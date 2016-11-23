@@ -12,7 +12,7 @@ RUN sed -i s/localhost/mysql/ ${ARTIFACTORY_HOME}/etc/storage.properties && \
 
 RUN mv $ARTIFACTORY_HOME/tomcat/conf/Catalina/localhost/artifactory.xml /tmp && \
     mv $ARTIFACTORY_HOME/tomcat/webapps/ROOT /tmp && \
-    echo '<Server port="8035" shutdown="SHUTDOWN"><Service name="Catalina"><Connector port="8081"/><Engine name="Catalina" defaultHost="localhost"><Host name="localhost" appBase="webapps"><Context path="" docBase="${artifactory.home}/webapps/artifactory.war" processTlds="false"><Manager pathname="" /></Context></Host></Engine></Service></Server>' > $ARTIFACTORY_HOME/tomcat/conf/server.xml
+    echo '<Server port="8035" shutdown="SHUTDOWN"><Service name="Catalina"><Connector port="8081"/><Engine name="Catalina" defaultHost="localhost"><Host name="localhost" appBase="/webapps"><Context path="/artifactory/" docBase="${artifactory.home}/webapps/artifactory.war" processTlds="false"><Manager pathname="" /></Context></Host></Engine></Service></Server>' > $ARTIFACTORY_HOME/tomcat/conf/server.xml
 
 VOLUME /opt/jfrog/artifactory/logs
 VOLUME /opt/jfrog/artifactory/data
